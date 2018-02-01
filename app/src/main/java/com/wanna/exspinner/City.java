@@ -11,4 +11,5 @@ public class City {
         String CityName;
         ArrayList<Map<String,String>> AreaList;
 
+
 }
