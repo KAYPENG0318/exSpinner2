@@ -4,11 +4,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,10 +40,20 @@ public class MainActivity extends AppCompatActivity {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-        String str1 = sb.toString();
-        HashMap<String,Object> m1=new HashMap<>();
-        m1.put(str1.concat("CityName"),"台北");
+        String str1=sb.toString();
         Log.d("NET",str1);
+        Gson gson=new Gson();
+        City[] citys=gson.fromJson(str1,City[].class);
+        Log.d("city",citys.length+"");
+        for(int i=0;i<citys.length;i++)
+        {
+            Log.d("city",citys[i].CityName);
+            ArrayList<Map<String,String>> mylist=citys[i].AreaList;
+            for(int j=0;j<mylist.size();j++)
+            {
+                Log.d("country",mylist.get(j).get("AreaName"));
+            }
+        }
 
     }
 }
