@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 listname[i]=list.get(i).get("AreaName");
             }
             Log.d("LIST:" ,listname.toString());
-            ArrayAdapter<String> choosearea = new ArrayAdapter<String>(MainActivity.this,android.R.layout.activity_list_item,listname);
+            ArrayAdapter<String> choosearea = new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_spinner_item,listname);
             sp2.setAdapter(choosearea);
 
             //讀取第一個下拉選單是選擇第幾個
