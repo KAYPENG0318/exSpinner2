@@ -77,11 +77,13 @@ public class MainActivity extends AppCompatActivity {
     private AdapterView.OnItemSelectedListener selectListener = new AdapterView.OnItemSelectedListener(){
         public void onItemSelected(AdapterView<?> parent, View v, int position, long id){
             ArrayList<Map<String,String>> list = citys[position].AreaList;
-            ArrayList<String> listname =  new ArrayList();
+            String[] listname = new String[list.size()];
+
             for(int i=0;i<list.size();i++)
             {
-                listname.add(list.get(i).get("AreaName"));
+                listname[i]=list.get(i).get("AreaName");
             }
+            Log.d("LIST:" ,listname.toString());
             ArrayAdapter<String> choosearea = new ArrayAdapter<String>(MainActivity.this,android.R.layout.activity_list_item,listname);
             sp2.setAdapter(choosearea);
 
