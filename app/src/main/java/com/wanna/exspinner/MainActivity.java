@@ -3,6 +3,8 @@ package com.wanna.exspinner;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -65,7 +67,36 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        ArrayAdapter<String> choosekind = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, type);
-        sp.setAdapter(choosekind);
+        ArrayAdapter<String> choosecity = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, type);
+        sp.setAdapter(choosecity);
+        sp.setOnItemSelectedListener(selectListener);
+
+
     }
+    //第一個下拉類別的監看式
+    private AdapterView.OnItemSelectedListener selectListener = new AdapterView.OnItemSelectedListener(){
+        public void onItemSelected(AdapterView<?> parent, View v, int position, long id){
+            ArrayList<Map<String,String>> list = citys[position].AreaList;
+            ArrayList<String> listname =  new ArrayList();
+            for(int i=0;i<list.size();i++)
+            {
+                listname.add(list.get(i).get("AreaName"));
+            }
+            ArrayAdapter<String> choosearea = new ArrayAdapter<String>(MainActivity.this,android.R.layout.activity_list_item,listname);
+            sp2.setAdapter(choosearea);
+
+            //讀取第一個下拉選單是選擇第幾個
+            //int pos = sp.getSelectedItemPosition();
+            //重新產生新的Adapter，用的是二維陣列type2[pos]
+            //adapter2 = new ArrayAdapter<String>(context,android.R.layout.simple_spinner_item, type2[pos]);
+            //載入第二個下拉選單Spinner
+            //sp2.setAdapter(adapter2);
+        }
+
+        public void onNothingSelected(AdapterView<?> arg0){
+
+        }
+
+    };
+
 }
