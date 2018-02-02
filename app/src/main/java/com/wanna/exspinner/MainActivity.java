@@ -41,14 +41,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-//        try {
-//            while((str = br.readLine()) !=null)
-//            {
-//                sb.append(str);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
         String str1=sb.toString();
         Log.d("NET",str1);
         Gson gson=new Gson();
@@ -76,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
     //第一個下拉類別的監看式
     private AdapterView.OnItemSelectedListener selectListener = new AdapterView.OnItemSelectedListener(){
         public void onItemSelected(AdapterView<?> parent, View v, int position, long id){
+            //讀取第一個下拉選單是選擇第幾個
             ArrayList<Map<String,String>> list = citys[position].AreaList;
             String[] listname = new String[list.size()];
 
@@ -87,12 +81,8 @@ public class MainActivity extends AppCompatActivity {
             ArrayAdapter<String> choosearea = new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_spinner_item,listname);
             sp2.setAdapter(choosearea);
 
-            //讀取第一個下拉選單是選擇第幾個
-            //int pos = sp.getSelectedItemPosition();
-            //重新產生新的Adapter，用的是二維陣列type2[pos]
-            //adapter2 = new ArrayAdapter<String>(context,android.R.layout.simple_spinner_item, type2[pos]);
-            //載入第二個下拉選單Spinner
-            //sp2.setAdapter(adapter2);
+
+
         }
 
         public void onNothingSelected(AdapterView<?> arg0){
